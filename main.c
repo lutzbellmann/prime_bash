@@ -5,7 +5,7 @@
 #include <string.h>
 
 #define __uint64_t unsigned long long
-#define rev "0.1"
+#define rev "0.5"
 
 bool isprime(const __uint64_t n) {
     if (n == 1) return false;
@@ -49,9 +49,18 @@ void range_primes(const char* a, const char* b) {
     }
     printf("\n");
 }
+__uint64_t spow(int base, int exp)
+{
+    __uint64_t result = base;
+    for (int i = 0; i < exp; i++)
+    {
+        result *= base;
+    }
+    return result;
+}
 
 void list_primes() {
-    for (__uint64_t i = 1; i <= pow(2, 64); i++) {
+    for (__uint64_t i = 1; i <= spow(2, 62); i++) {
         if (isprime(i)) {
             printf("%llu ", i);
         }
@@ -66,7 +75,7 @@ void help() {
     printf("  -p #, --prime               Show, if given number is a prime number\n");
     printf("  -s #, --start               Show all prime numbers from [start #]\n");
     printf("  -e #, --end                 Show all prime numbers up to [end #]\n");
-    printf("  -l,   --list                List all prime numbers from 1 to 2^64-1\n");
+    printf("  -l,   --list                List all prime numbers from 1 to 2^62-1\n");
     printf("Directives:\n");
     printf("  -S,   --Silent              Only output number(s)\n");
 }
